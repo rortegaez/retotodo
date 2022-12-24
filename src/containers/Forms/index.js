@@ -15,23 +15,29 @@ const onSubmit = result => {
 		},
 		body: JSON.stringify(result)
 	})
-	.then(x => {
-		console.log('conectado')
-	})
 	.then(res => res.json())
-	.then(info => console.log(info))
+	.then(info => {
+		window.location.reload()
+		console.log('information', info)
+	})
 	.catch((error) => {
 		console.log(error)
 	})
 }
 
-// const refreshPage = () =>{
-	// window.location.reload(false)
-// }
+/*
+esto hace refresh de la page
+*/
+
+/*const refreshPage = () =>{
+	window.location.reload(false)
+}
+*/
+
 
 	return (
 		<div>
-			<form className='containerForms' onSubmit={ handleSubmit(onSubmit) }>
+			<form className='containerForms' onSubmit={ handleSubmit(onSubmit) } >
 				<h2>Crear nueva tarea</h2>
 
 				<input type='text' placehoder='titulo' className='containerTittle'

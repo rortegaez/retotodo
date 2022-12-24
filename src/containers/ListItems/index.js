@@ -22,12 +22,11 @@ const ListItems = () => {
 		.catch((error) => {
 			console.log(error)
 		})
-	}, []	)
+	}, []
+	)
 
 	return (
 		<div className='containerListItems'>
-
-			{/* <h3>Tareas</h3> */}
 
 			{ taskList.map(task => <Card taskData={ task } />) }
 

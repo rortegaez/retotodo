@@ -1,5 +1,6 @@
 import React from 'react'
 import trash from '../Imagenes/trash.png'
+import pencil from '../Imagenes/pencil.png'
 import './card.css'
 
 const Card = ({ taskData }) => {
@@ -36,6 +37,10 @@ const Card = ({ taskData }) => {
 
 			<button className='containerTrash' onClick={ () => handleClick(_id) } >
 				<img src={ trash } alt='Imagen trash' />
+			</button>
+
+			<button className='containerPencil'>
+				<img src={ pencil } alt='Imagen pencil modificacion' />
 			</button>
 
 			<p className='containerLimitTrash'>{ limit }</p>
