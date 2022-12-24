@@ -1,5 +1,6 @@
-import React from 'react'
+
 import { useForm } from 'react-hook-form'
+import './forms.css'
 
 const Forms = () => {
 
@@ -24,12 +25,16 @@ const onSubmit = result => {
 	})
 }
 
+// const refreshPage = () =>{
+	// window.location.reload(false)
+// }
+
 	return (
 		<div>
-			<form className='forms' onSubmit={ handleSubmit(onSubmit) }>
-				<h3>Crear nueva tarea</h3>
+			<form className='containerForms' onSubmit={ handleSubmit(onSubmit) }>
+				<h2>Crear nueva tarea</h2>
 
-				<input type='text' palcehoder='titulo'
+				<input type='text' placehoder='titulo' className='containerTittle'
 				{...register('title', {
 					required: {
 						value: true,
@@ -39,7 +44,7 @@ const onSubmit = result => {
 				/>
 				{errors.title && <span clasName='errors'>{ errors.title.message }</span>}
 
-				<input type='text' placeholder='tarea'
+				<input type='text' placeholder='tarea' className='containerTask'
 				{...register('task', {
 					required: {
 						value: true,
@@ -53,9 +58,9 @@ const onSubmit = result => {
 				/>
 				{errors.task && <span className='errors'>{ errors.task.message }</span>}
 
-				<h3>Fecha límite</h3>
+				<h2>Fecha límite</h2>
 
-				<input type='date'
+				<input type='date' className='containerDate'
 				{...register('limit', {
 					required: {
 						value: true,
@@ -64,7 +69,7 @@ const onSubmit = result => {
 				})}
 				/>
 
-				<button>Add task</button>
+				<button className='containerButton'>Add task</button>
 
 			</form>
 		</div>

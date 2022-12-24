@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card'
+import './listItems.css'
 
 const ListItems = () => {
 
@@ -15,17 +16,18 @@ const ListItems = () => {
 			console.log('prueba', res)
 			return res
 		})
-		.then(res =>setTaskList(res))
+		.then(res =>{
+			return setTaskList(res)
+		})
 		.catch((error) => {
 			console.log(error)
 		})
-	}, []
-	)
+	}, []	)
 
 	return (
 		<div className='containerListItems'>
 
-			<h3>Tareas</h3>
+			{/* <h3>Tareas</h3> */}
 
 			{ taskList.map(task => <Card taskData={ task } />) }
 

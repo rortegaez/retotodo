@@ -1,6 +1,5 @@
 import React from 'react'
 import trash from '../Imagenes/trash.png'
-import { useEffect } from 'react'
 import './card.css'
 
 const Card = ({ taskData }) => {
@@ -11,15 +10,14 @@ const Card = ({ taskData }) => {
 		fetch(`http://localhost:8000/task/${_id}`, {
 			method: 'DELETE'
 		})
-		.then(res => res.json())
+		.then(res => {
+			window.location.reload()
+			return res.json()
+		})
+		.then(res => {
+			console.log(res)
+		})
 	}
-
-	
-	useEffect(() => {
-		fetch('http://localhost:8000/task/')
-		.then(res => res.json())
-	}, [])
-	
 
 	/*
 
@@ -34,15 +32,13 @@ const Card = ({ taskData }) => {
 	return (
 		<div className='mainCard'>
 
-			<h5>{ title }</h5>
+			<h5 className='containerTittleTrash'>{ title }</h5>
 
-			<button className='button' onClick={ () => {
-				handleClick(_id)
-			} }>
+			<button className='containerTrash' onClick={ () => handleClick(_id) } >
 				<img src={ trash } alt='Imagen trash' />
 			</button>
 
-			<p>{ limit }</p>
+			<p className='containerLimitTrash'>{ limit }</p>
 
 		</div>
 	)
