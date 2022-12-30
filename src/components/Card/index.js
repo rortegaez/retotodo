@@ -1,11 +1,16 @@
 import React from 'react'
+import { useNavigate} from 'react-router-dom'
+
 import trash from '../Imagenes/trash.png'
 import pencil from '../Imagenes/pencil.png'
-import './card.css'
+
+import styles from './module.card.css'
 
 const Card = ({ taskData }) => {
 
 	const { title, limit, _id } = taskData
+
+	const navigate = useNavigate()
 
 	const handleClick = (_id) => {
 		fetch(`http://localhost:8000/task/${_id}`, {
@@ -17,6 +22,12 @@ const Card = ({ taskData }) => {
 		})
 		.then(res => {
 			console.log(res)
+		})
+	}
+
+	const handleId = () => {
+		navigate('modifier', {
+			state: { ident: { _id }}
 		})
 	}
 
@@ -33,17 +44,18 @@ const Card = ({ taskData }) => {
 	return (
 		<div className='mainCard'>
 
-			<h5 className='containerTittleTrash'>{ title }</h5>
+				<h5 className='containerTittleTrash'>{ title }</h5>
 
-			<button className='containerTrash' onClick={ () => handleClick(_id) } >
-				<img src={ trash } alt='Imagen trash' />
-			</button>
+				<button className='containerTrash' onClick={ () => handleClick	(_id) } >
+					<img src={ trash } alt='Imagen trash' />
+				</button>
 
-			<button className='containerPencil'>
-				<img src={ pencil } alt='Imagen pencil modificacion' />
-			</button>
+				<button className='containerPencil' onClick={handleId}>
+					{console.log('prueba', _id)}
+						<img src={ pencil } alt='Imagen pencil modificacion' />
+				</button>
 
-			<p className='containerLimitTrash'>{ limit }</p>
+				<p className='containerLimitTrash'>{ limit }</p>
 
 		</div>
 	)

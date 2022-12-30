@@ -1,16 +1,23 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Header from './containers/Header'
-import Forms from './containers/Forms';
-import ListItems from './containers/ListItems';
+import Modifier from './containers/Modifier';
+import Main from './containers/Main';
 
 function App() {
   return (
     <div className="App">
 
-			<Header />
-			<Forms />
-			<ListItems />
+			<BrowserRouter>
+
+				<Routes>
+					
+					<Route path='/' element={<Main />} />
+					<Route path='/modifier' element={<Modifier />} />
+
+				</Routes>
+
+			</BrowserRouter>
 
 
     </div>

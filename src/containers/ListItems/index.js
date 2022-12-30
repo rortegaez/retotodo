@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../../components/Card'
-import './listItems.css'
+import styles from './module.listItems.css'
 
 const ListItems = () => {
 

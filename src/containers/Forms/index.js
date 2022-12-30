@@ -1,6 +1,6 @@
 
 import { useForm } from 'react-hook-form'
-import './forms.css'
+import styles from './module.forms.css'
 
 const Forms = () => {
 
@@ -17,6 +17,7 @@ const onSubmit = result => {
 	})
 	.then(res => res.json())
 	.then(info => {
+		// window... es para actualizar la page y que salgan todos los task
 		window.location.reload()
 		console.log('information', info)
 	})
@@ -25,22 +26,12 @@ const onSubmit = result => {
 	})
 }
 
-/*
-esto hace refresh de la page
-*/
-
-/*const refreshPage = () =>{
-	window.location.reload(false)
-}
-*/
-
-
 	return (
 		<div>
 			<form className='containerForms' onSubmit={ handleSubmit(onSubmit) } >
 				<h2>Crear nueva tarea</h2>
 
-				<input type='text' placehoder='titulo' className='containerTittle'
+				<input type='text' placeholder='titulo' className='containerTittle'
 				{...register('title', {
 					required: {
 						value: true,
