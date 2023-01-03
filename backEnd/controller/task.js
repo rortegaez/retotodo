@@ -24,4 +24,17 @@ const deleteById = async (req, res) => {
 	return res.json({ message: 'ok' })
 }
 
-module.exports = { getAll, create, deleteById }
+const getById = async (req, res) => {
+	const result = await Task.findById(req.params.id)
+	res.json(result)
+}
+
+const updateById = async (req, res) => {
+	const result = await Task.findByIdAndUpdate(req.params.id, req.body)
+	if(!result){
+		return res.json({ message: 'nothing to modifier' })
+	}
+	return res.json({ message: 'ok' })
+}
+
+module.exports = { getAll, create, deleteById, updateById, getById }

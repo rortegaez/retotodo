@@ -27,7 +27,7 @@ const Card = ({ taskData }) => {
 
 	const handleId = () => {
 		navigate('modifier', {
-			state: { ident: { _id }}
+			state: { ident: { _id } }
 		})
 	}
 

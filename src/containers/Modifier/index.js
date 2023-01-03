@@ -6,18 +6,32 @@ import { useEffect, useState } from 'react'
 const Modifier = () => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm()
-	const { state } = useLocation()
 
-	const { ident } = state
+	const [ taskId, setTaskId ] = useState([])
+
+	//const { state } = useLocation()
+
+	//const { ident } = state
 
 useEffect(() => {
-	
-})
+	fetch('http://localhost:8000/task/63a6c2689cd0b104e3f94b61')
+	.then(res => {
+		return res.json()
+	})
+	.then(res => {
+		return setTaskId(res)
+	})
+	.catch((error) =>{
+		console.log('ERROR', error)
+	})
+}, [])
+
+console.log('task', taskId)
 
 	return (
 		<div>
 
-			{console.log(ident)}
+			{/* {console.log('identificador', ident)} */}
 
 			<form className='formModifier' onSubmit={ handleSubmit()}>
 
