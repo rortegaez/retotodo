@@ -51,7 +51,7 @@ const Card = ({ taskData }) => {
 				</button>
 
 				<button className='containerPencil' onClick={handleId}>
-					{console.log('prueba', _id)}
+					{/* {console.log('prueba', _id)} */}
 						<img src={ pencil } alt='Imagen pencil modificacion' />
 				</button>
 

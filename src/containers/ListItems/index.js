@@ -12,10 +12,6 @@ const ListItems = () => {
 		.then(res => {
 			return res.json()
 		})
-		.then(res => {
-			console.log('prueba', res)
-			return res
-		})
 		.then(res =>{
 			return setTaskList(res)
 		})

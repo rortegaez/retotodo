@@ -1,20 +1,19 @@
-import React from 'react'
+
 import { useForm } from 'react-hook-form'
 import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const Modifier = () => {
 
-	const { register, handleSubmit, formState: { errors } } = useForm()
-
+	const { reset, register, handleSubmit, formState: { errors } } = useForm()
 	const [ taskId, setTaskId ] = useState([])
+	const { state } = useLocation()
+	const { ident } = state
 
-	//const { state } = useLocation()
-
-	//const { ident } = state
+	const idx = ident._id
 
 useEffect(() => {
-	fetch('http://localhost:8000/task/63a6c2689cd0b104e3f94b61')
+	fetch(`http://localhost:8000/task/${idx}`)
 	.then(res => {
 		return res.json()
 	})
@@ -24,33 +23,38 @@ useEffect(() => {
 	.catch((error) =>{
 		console.log('ERROR', error)
 	})
-}, [])
+	reset(taskId)
+}, [ idx, reset, taskId])
 
-console.log('task', taskId)
+//console.log('task', taskId)
+
+//console.log('titulo', titleCard)
+
+
 
 	return (
 		<div>
-
-			{/* {console.log('identificador', ident)} */}
 
 			<form className='formModifier' onSubmit={ handleSubmit()}>
 
 				<h2>Tarea</h2>
 
-				<input type='text' placeholder='Titulo'
-				className='containerModifierTitle'
-				{...register('title', {
-					required: {
-						value: true,
-						message: 'Debe de mantener el titutlo'
-					}
-				})}
-				/>
-				{ errors.title && <span className='errors'> { errors.title.message }</span>}
+					<input type='text' placeholder='tituloPrueba'
+					className='containerModifierTitle'
+					{...register('title', {
+						//value: titleCard,
+						required: {
+							value: true,
+							message: 'Debe de mantener el titutlo'
+						}
+					})}
+					/>
+					
+				{ errors.title && <span className='errors'> { errors.title.message }</span> }
 
 				<h2>Descripción</h2>
 
-				<input type='text' placeholder='Descripción'
+				<input type='text' placeholder={ taskId.task }
 				className='containerModifierTask'
 				{...register('task', {
 					required: {
@@ -59,7 +63,7 @@ console.log('task', taskId)
 					}
 				})}
 				/>
-				{errors.task && <span className='errors'>{ errors.task.message }</span>}
+				{ errors.task && <span className='errors'>{ errors.task.message }</span> }
 
 				<h2>Fecha</h2>
 
@@ -71,7 +75,7 @@ console.log('task', taskId)
 					}
 				})}
 				/>
-				{ errors.date && <span className='errors'>{ errors.date.message }</span>}
+				{ errors.date && <span className='errors'>{ errors.date.message }</span> }
 
 				<button className='buttonModifier'>Modifier task</button>
 
