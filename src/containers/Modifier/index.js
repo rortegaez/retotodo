@@ -12,6 +12,8 @@ const Modifier = () => {
 
 	const idx = ident._id
 
+	const date = new Date(taskId.limit).toLocaleDateString('en-GB').split('/').reverse().join('-')
+
 useEffect(() => {
 	fetch(`http://localhost:8000/task/${idx}`)
 	.then(res => {
@@ -23,8 +25,27 @@ useEffect(() => {
 	.catch((error) =>{
 		console.log('ERROR', error)
 	})
-	reset(taskId)
-}, [ idx, reset, taskId])
+	let defaultValues = {}
+	defaultValues.title = taskId.title
+	defaultValues.task = taskId.task
+	defaultValues.limit = date
+	reset({ ...defaultValues })
+}, [ idx, reset, taskId.title, taskId.task, date])
+
+const onSubmit = result => {
+	console.log('cambio', result)
+	fetch(`http://localhost:8000/task/63a6cee39cd0b104e3f94bd6`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(result)
+	})
+	.then(res => res.json())
+	.catch((error) => {
+		console.log(error)
+	})
+}
 
 //console.log('task', taskId)
 
@@ -35,7 +56,7 @@ useEffect(() => {
 	return (
 		<div>
 
-			<form className='formModifier' onSubmit={ handleSubmit()}>
+			<form className='formModifier' onSubmit={ handleSubmit(onSubmit) }>
 
 				<h2>Tarea</h2>
 
