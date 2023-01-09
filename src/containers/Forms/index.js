@@ -2,6 +2,8 @@
 import { useForm } from 'react-hook-form'
 import styles from './module.forms.css'
 
+//import myDate from '../../function/myDate'
+
 const Forms = () => {
 
 	const { register, handleSubmit, formState: { errors } } = useForm()

@@ -41,6 +41,8 @@ const Card = ({ taskData }) => {
 	}
 	*/
 
+	const date = new Date(limit).toLocaleDateString('en-GB').split('/').join('-')
+
 	return (
 		<div className='mainCard'>
 
@@ -55,7 +57,7 @@ const Card = ({ taskData }) => {
 						<img src={ pencil } alt='Imagen pencil modificacion' />
 				</button>
 
-				<p className='containerLimitTrash'>{ limit }</p>
+				<p className='containerLimitTrash'>{ date }</p>
 
 		</div>
 	)
